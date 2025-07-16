@@ -1,0 +1,127 @@
+﻿@model IEnumerable<App_TrabajadoresPrueba.Models.TrabajadorModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Listado de Trabajadores</h1>
+
+<p>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoTrabajadorModal">
+        Nuevo Trabajador
+    </button>
+</p>
+
+<div class="modal fade" id="nuevoTrabajadorModal" tabindex="-1" aria-labelledby="nuevoTrabajadorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="nuevoTrabajadorModalLabel">Nuevo Trabajador</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+
+                <form asp-action="Create" method="post">
+                    <div class="mb-3">
+                        <label asp-for="First().tipoDocumento" class="form-label"></label>
+                        <input asp-for="First().tipoDocumento" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="First().numeroDocumento" class="form-label"></label>
+                        <input asp-for="First().numeroDocumento" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="First().nombres" class="form-label"></label>
+                        <input asp-for="First().nombres" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="First().sexo" class="form-label"></label>
+                        <input asp-for="First().sexo" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="First().departamento" class="form-label"></label>
+                        <input asp-for="First().departamento" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="First().provincia" class="form-label"></label>
+                        <input asp-for="First().provincia" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="First().distrito" class="form-label"></label>
+                        <input asp-for="First().distrito" class="form-control" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" asp-action="Create"  class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tipoDocumento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.numeroDocumento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sexo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.departamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.provincia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.distrito)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipoDocumento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.numeroDocumento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sexo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.departamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.provincia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.distrito)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-warning btn-sm" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
